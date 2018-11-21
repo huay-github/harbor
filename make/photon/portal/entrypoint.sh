@@ -16,12 +16,13 @@ npm run link_lib
 npm run release
 
 # Update
-apt-get update
-apt-get install -y python 
-apt-get install -y python-pip
+sudo apt-get update
+sudo apt-get install -y python 
+sudo apt-get install -y python-pip
+sudo apt-get install libyaml-dev
  
 # Install app dependencies
 pip install --upgrade pip
-pip install pyyaml
+pip install --user PyYAML
 
 python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' swagger.yaml swagger.json
