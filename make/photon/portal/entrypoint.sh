@@ -19,6 +19,7 @@ npm run release
 apt-get update
 apt-get install -y python 
 apt-get install -y python-pip
+apt-get install python-dev
 apt-get install libyaml-dev
  
 # Install app dependencies
