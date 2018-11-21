@@ -26,6 +26,8 @@ EXPOSE 80
 VOLUME /var/cache/nginx /var/log/nginx /run
 
 COPY --from=0 /build_dir/dist /usr/share/nginx/html
+COPY --from=0 /build_dir/swagger.yaml /usr/share/nginx/html
+COPY --from=0 /build_dir/swagger.json /usr/share/nginx/html
 COPY make/photon/portal/nginx.conf /etc/nginx/nginx.conf
 
 STOPSIGNAL SIGQUIT
