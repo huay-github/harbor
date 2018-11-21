@@ -9,27 +9,26 @@ COPY ./docs/swagger.yaml   /portal_src
 
 WORKDIR /portal_src
 
-RUN npm install && \
-    chmod u+x /entrypoint.sh
+RUN chmod u+x /entrypoint.sh
 RUN /entrypoint.sh
 VOLUME ["/portal_src"]
 
 
-# FROM photon:2.0
+FROM photon:2.0
 
-# RUN tdnf install -y nginx >> /dev/null \
-#     && ln -sf /dev/stdout /var/log/nginx/access.log \
-#     && ln -sf /dev/stderr /var/log/nginx/error.log \
-#     && tdnf clean all
+RUN tdnf install -y nginx >> /dev/null \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && tdnf clean all
 
-# EXPOSE 80
-# VOLUME /var/cache/nginx /var/log/nginx /run
+EXPOSE 80
+VOLUME /var/cache/nginx /var/log/nginx /run
 
-# COPY --from=0 /build_dir/dist /usr/share/nginx/html
-# COPY make/photon/portal/nginx.conf /etc/nginx/nginx.conf
+COPY --from=0 /build_dir/dist /usr/share/nginx/html
+COPY make/photon/portal/nginx.conf /etc/nginx/nginx.conf
 
-# STOPSIGNAL SIGQUIT
+STOPSIGNAL SIGQUIT
 
-# HEALTHCHECK CMD curl --fail -s http://127.0.0.1 || exit 1
+HEALTHCHECK CMD curl --fail -s http://127.0.0.1 || exit 1
 
-# CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
