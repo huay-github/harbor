@@ -9,7 +9,8 @@ COPY ./docs/swagger.yaml   /portal_src
 
 WORKDIR /portal_src
 
-RUN chmod u+x /entrypoint.sh
+RUN npm install && \
+    chmod u+x /entrypoint.sh
 RUN /entrypoint.sh
 VOLUME ["/portal_src"]
 
