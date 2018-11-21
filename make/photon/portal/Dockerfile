@@ -5,11 +5,11 @@ RUN mkdir -p /build_dir
 
 COPY make/photon/portal/entrypoint.sh /
 COPY src/portal /portal_src
+COPY ./docs/swagger.yaml   /portal_src
 
 WORKDIR /portal_src
 
-RUN npm install && \
-    chmod u+x /entrypoint.sh
+RUN chmod u+x /entrypoint.sh
 RUN /entrypoint.sh
 VOLUME ["/portal_src"]
 
