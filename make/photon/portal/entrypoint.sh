@@ -7,16 +7,8 @@ ls -la
 
 # Update
 apt-get update
-apt-get install -y python 
-apt-get install -y python-pip
-apt-get install -y python-dev
-apt-get install -y libyaml-dev
- 
-# Install app dependencies
-pip install --upgrade pip
-pip install --user PyYAML
-
-python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' swagger.yaml swagger.json
+apt-get install -y ruby
+ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))' swagger.yaml>swagger.json
 
 cat ./package.json
 npm install
