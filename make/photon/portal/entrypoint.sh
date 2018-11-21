@@ -16,10 +16,10 @@ npm run link_lib
 npm run release
 
 # Update
-sudo apt-get update
-sudo apt-get install -y python 
-sudo apt-get install -y python-pip
-sudo apt-get install libyaml-dev
+apt-get update
+apt-get install -y python 
+apt-get install -y python-pip
+apt-get install libyaml-dev
  
 # Install app dependencies
 pip install --upgrade pip
